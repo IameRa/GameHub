@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spiele – iamera</title>
+<meta name="description" content="Flaggen raten, Wissen testen, Formulare überleben: drei kleine Browser-Spiele.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06214f;--blue:#0b3fa8;--ink:#16204a;--paper:#f4f2ea;--sun:#ffd21f;--red:#e0262d;--ok:#1f9d55;--mute:#b9c8ee;
+  --font:Barlow,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--disp:"Bebas Neue",Impact,"Arial Narrow",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--paper);font-family:var(--font);font-weight:500;line-height:1.5}
+body{background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.6px);background-size:14px 14px}
+body{min-height:100vh;padding:clamp(28px,7vw,88px) clamp(16px,5vw,48px) 56px}
+.wrap{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+body{animation:dots 4s linear infinite}
+@keyframes dots{to{background-position:14px 14px}}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.bg>*{position:absolute;opacity:.55;animation:drift 30s ease-in-out infinite alternate}
+.b1{left:5%;top:62%;width:110px;height:76px;animation-duration:34s;--dx:60px;--dy:-90px;--r:25deg}
+.b1 i{position:absolute;border-radius:50%}
+.b1 .p{left:30px;top:12px;width:50px;height:50px;background:var(--sun)}
+.b1 .ring{left:2px;top:26px;width:106px;height:26px;border:5px solid var(--red);transform:rotate(-20deg)}
+.b2{right:6%;top:46%;width:84px;height:58px;border-radius:8px;background:linear-gradient(90deg,#0055a4 33.3%,#fff 33.3% 66.6%,#ef4135 66.6%);animation-duration:40s;--dx:-70px;--dy:80px;--r:-18deg}
+.b3{left:58%;top:84%;color:var(--red);border:3px double var(--red);padding:0 10px;font-weight:700;font-size:1.3rem;font-family:var(--disp);letter-spacing:.06em;animation-duration:28s;--dx:-120px;--dy:-60px;--r:14deg}
+@keyframes drift{from{transform:translate(0,0) rotate(-8deg)}to{transform:translate(var(--dx),var(--dy)) rotate(var(--r))}}
+html.still body,html.still .bg>*{animation-play-state:paused}
+.anim{position:fixed;top:14px;right:14px;z-index:5;font:700 .85rem var(--font);color:var(--paper);background:rgba(6,33,79,.85);
+  border:2px solid var(--paper);border-radius:999px;padding:6px 14px;cursor:pointer}
+.anim:hover{background:var(--paper);color:var(--bg)}
+.anim:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+h1,h2{font-family:var(--disp);font-weight:400;margin:0;letter-spacing:.02em}
+h1{font-size:clamp(4.5rem,20vw,10rem);line-height:.85}
+.lead{margin:18px 0 0;max-width:34ch;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:clamp(32px,6vw,64px)}
+.tile{display:flex;flex-direction:column;color:var(--ink);text-decoration:none;border-radius:20px;overflow:hidden;
+  box-shadow:6px 6px 0 rgba(0,0,0,.3);transition:transform .15s,box-shadow .15s}
+.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 rgba(0,0,0,.3)}
+.tile:focus-visible{outline:4px solid var(--sun);outline-offset:4px}
+.flags{background:#0b0d1f;color:#f3f4fc}.uni{background:var(--blue);color:#fff}.tape{background:var(--paper)}
+.uni .preview{background:var(--bg);border-color:var(--bg);background-image:radial-gradient(rgba(255,255,255,.1) 1.5px,transparent 1.6px);background-size:14px 14px}
+.uni .go{color:var(--sun)}
+.flags .go{color:#3dd6f5}
+.flags .preview{gap:0;border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 15% 0,rgba(139,123,255,.6),transparent 60%),radial-gradient(circle at 95% 100%,rgba(61,214,245,.45),transparent 55%),#0b0d1f}
+.preview{height:148px;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;
+  border-bottom:2px solid var(--ink)}
+.body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+h2{font-size:2.3rem;line-height:1}
+.body p{margin:0;font-size:1rem}
+.go{margin-top:auto;padding-top:14px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+/* Flags */
+.fl{width:68px;height:50px;border-radius:9px;border:2px solid #0b0d1f;margin:0 -6px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.f1{background:linear-gradient(#111 33.3%,#d00 33.3% 66.6%,#ffce00 66.6%);transform:translateY(8px) rotate(-6deg)}
+.f2{background:linear-gradient(90deg,#0055a4 33.3%,#fff 33.3% 66.6%,#ef4135 66.6%);transform:rotate(5deg)}
+.f3{background:linear-gradient(90deg,transparent 26%,#ffc72c 26% 40%,transparent 40%),linear-gradient(transparent 38%,#ffc72c 38% 62%,transparent 62%),#006aa7;transform:translateY(8px) rotate(-6deg)}
+.f4{background:radial-gradient(circle,#bc002d 0 28%,transparent 29%),#fff;transform:rotate(5deg)}
+/* UniQuiz */
+.planet{position:relative;width:150px;height:96px}
+.planet i{position:absolute;border-radius:50%}
+.planet .p{left:50px;top:20px;width:52px;height:52px;background:var(--sun)}
+.planet .ring{left:14px;top:34px;width:124px;height:30px;border:5px solid var(--red);transform:rotate(-20deg)}
+.planet .s1{left:10px;top:8px;width:7px;height:7px;background:#fff}
+.planet .s2{right:6px;bottom:6px;width:5px;height:5px;background:#fff}
+.planet .s3{right:24px;top:4px;width:4px;height:4px;background:#fff}
+/* Red Tape */
+.form{width:100%;max-width:230px;font-size:.85rem;font-weight:600;position:relative}
+.form .box{border:2px solid var(--ink);background:#fffefa;padding:6px 10px;margin-bottom:8px}
+.form .r{display:flex;gap:8px;align-items:center;margin-top:3px}
+.form .bad{color:var(--red)}.form .good{color:var(--ok)}
+.stamp{position:absolute;right:-6px;top:-12px;color:var(--red);border:3px double var(--red);padding:0 8px;
+  font-weight:800;transform:rotate(-9deg);background:var(--paper)}
+footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
+footer a{color:var(--paper)}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <div class="b1"><i class="p"></i><i class="ring"></i></div>
+  <div class="b2"></div>
+  <div class="b3">Abgelehnt</div>
+</div>
+<button class="anim" id="anim" type="button" aria-pressed="false">Animation stoppen</button>
+<div class="wrap">
+  <header>
+    <h1>Spiele</h1>
+    <p class="lead">Flaggen raten, Universen erobern, Formulare überleben.</p>
+  </header>
+
+  <main class="grid">
+    <a class="tile flags" href="https://iamera.github.io/Flags/">
+      <div class="preview" aria-hidden="true"><span class="fl f1"></span><span class="fl f2"></span><span class="fl f3"></span><span class="fl f4"></span></div>
+      <div class="body">
+        <h2>Flags</h2>
+        <p>Alle Flaggen der Welt: Länder, Gebiete oder beides. Wie viele erkennst du?</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
+
+    <a class="tile uni" href="https://iamera.github.io/UniQuiz/">
+      <div class="preview" aria-hidden="true">
+        <div class="planet"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="p"></i><i class="ring"></i></div>
+      </div>
+      <div class="body">
+        <h2>UniQuiz</h2>
+        <p>34 Quizze in 6 Kategorien, von Batman bis Biologie. Die Fragen werden Stufe für Stufe schwerer.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
+
+    <a class="tile tape" href="https://iamera.github.io/RedTape/">
+      <div class="preview" aria-hidden="true">
+        <div class="form">
+          <div class="box">Passwort</div>
+          <div class="r bad"><span>✗</span>Mindestens 10 Zeichen</div>
+          <div class="r good"><span>✓</span>Keine Leerzeichen</div>
+          <span class="stamp">Abgelehnt</span>
+        </div>
+      </div>
+      <div class="body">
+        <h2>Red Tape</h2>
+        <p>Das unmögliche Formular: Jede Angabe kann die nächste ungültig machen.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
+  </main>
+
+  <footer>iamera.github.io</footer>
+</div>
+<script>
+(function(){
+  var KEY="hub-animation",btn=document.getElementById("anim"),root=document.documentElement,saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  var still=saved?saved==="aus":matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function apply(){
+    root.classList.toggle("still",still);
+    btn.textContent=still?"Animation starten":"Animation stoppen";
+    btn.setAttribute("aria-pressed",String(still));
+  }
+  btn.addEventListener("click",function(){
+    still=!still;apply();
+    try{localStorage.setItem(KEY,still?"aus":"an")}catch(e){}
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
