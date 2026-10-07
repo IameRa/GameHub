@@ -65,6 +65,12 @@ h2{font-size:2.3rem;line-height:1}
 .planet .s1{left:10px;top:8px;width:7px;height:7px;background:#fff}
 .planet .s2{right:6px;bottom:6px;width:5px;height:5px;background:#fff}
 .planet .s3{right:24px;top:4px;width:4px;height:4px;background:#fff}
+/* Emberdeep */
+.mine{background:#1c1522;color:#f6ead7}
+.mine .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 80% 55% at 50% 110%,rgba(255,122,26,.55),transparent),#1c1522}
+.mine .go{color:#ffcf3f}
+.rock{width:96px;height:88px;clip-path:polygon(14% 30%,30% 8%,62% 4%,88% 22%,96% 55%,80% 90%,45% 98%,12% 80%,4% 50%);
+  background:linear-gradient(118deg,transparent 36%,#ffcf3f 37% 44%,transparent 45% 57%,#ffb300 58% 62%,transparent 63%),radial-gradient(circle at 35% 28%,#b3abc2,#716983 55%,#463e51)}
 /* Red Tape */
 .form{width:100%;max-width:230px;font-size:.85rem;font-weight:600;position:relative}
 .form .box{border:2px solid var(--ink);background:#fffefa;padding:6px 10px;margin-bottom:8px}
@@ -87,7 +93,7 @@ footer a{color:var(--paper)}
 <div class="wrap">
   <header>
     <h1>Spiele</h1>
-    <p class="lead">Flaggen raten, Universen erobern, Formulare überleben.</p>
+    <p class="lead">Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen.</p>
   </header>
 
   <main class="grid">
@@ -123,6 +129,15 @@ footer a{color:var(--paper)}
       <div class="body">
         <h2>Red Tape</h2>
         <p>Das unmögliche Formular: Jede Angabe kann die nächste ungültig machen.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
+
+    <a class="tile mine" href="https://iamera.github.io/Emberdeep/">
+      <div class="preview" aria-hidden="true"><div class="rock"></div></div>
+      <div class="body">
+        <h2>Emberdeep</h2>
+        <p>Ein Mining-Clicker: Gold schürfen, Zwerge anheuern, Upgrades und Goldadern jagen.</p>
         <span class="go">Spielen</span>
       </div>
     </a>
