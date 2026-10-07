@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spiele – iamera</title>
-<meta name="description" content="Flaggen raten, Wissen testen, Formulare überleben: drei kleine Browser-Spiele.">
+<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen: vier kleine Browser-Spiele.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@500;700&display=swap" rel="stylesheet">
@@ -13,83 +13,77 @@
   --font:Barlow,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--disp:"Bebas Neue",Impact,"Arial Narrow",sans-serif}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--paper);font-family:var(--font);font-weight:500;line-height:1.5}
-body{background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.6px);background-size:14px 14px}
-body{min-height:100vh;padding:clamp(28px,7vw,88px) clamp(16px,5vw,48px) 56px}
+body{min-height:100vh;padding:clamp(28px,7vw,88px) clamp(16px,5vw,48px) 56px;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1.5px,transparent 1.6px),linear-gradient(180deg,#082a63,#06214f 45%,#04173a);background-size:14px 14px,auto}
+#cv,.veil{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.veil{background:radial-gradient(ellipse 75% 65% at 50% 38%,transparent 45%,rgba(2,10,30,.55))}
 .wrap{max-width:1040px;margin:0 auto;position:relative;z-index:1}
-body{animation:dots 4s linear infinite}
-@keyframes dots{to{background-position:14px 14px}}
-.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.bg>*{position:absolute;opacity:.55;animation:drift 30s ease-in-out infinite alternate}
-.b1{left:5%;top:62%;width:110px;height:76px;animation-duration:34s;--dx:60px;--dy:-90px;--r:25deg}
-.b1 i{position:absolute;border-radius:50%}
-.b1 .p{left:30px;top:12px;width:50px;height:50px;background:var(--sun)}
-.b1 .ring{left:2px;top:26px;width:106px;height:26px;border:5px solid var(--red);transform:rotate(-20deg)}
-.b2{right:6%;top:46%;width:84px;height:58px;border-radius:8px;background:linear-gradient(90deg,#0055a4 33.3%,#fff 33.3% 66.6%,#ef4135 66.6%);animation-duration:40s;--dx:-70px;--dy:80px;--r:-18deg}
-.b3{left:58%;top:84%;color:var(--red);border:3px double var(--red);padding:0 10px;font-weight:700;font-size:1.3rem;font-family:var(--disp);letter-spacing:.06em;animation-duration:28s;--dx:-120px;--dy:-60px;--r:14deg}
-@keyframes drift{from{transform:translate(0,0) rotate(-8deg)}to{transform:translate(var(--dx),var(--dy)) rotate(var(--r))}}
-html.still body,html.still .bg>*{animation-play-state:paused}
 .anim{position:fixed;top:14px;right:14px;z-index:5;font:700 .85rem var(--font);color:var(--paper);background:rgba(6,33,79,.85);
-  border:2px solid var(--paper);border-radius:999px;padding:6px 14px;cursor:pointer}
+  border:2px solid rgba(244,242,234,.7);border-radius:999px;padding:7px 15px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .anim:hover{background:var(--paper);color:var(--bg)}
 .anim:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
 h1,h2{font-family:var(--disp);font-weight:400;margin:0;letter-spacing:.02em}
-h1{font-size:clamp(4.5rem,20vw,10rem);line-height:.85}
-.lead{margin:18px 0 0;max-width:34ch;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--mute)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:clamp(32px,6vw,64px)}
-.tile{display:flex;flex-direction:column;color:var(--ink);text-decoration:none;border-radius:20px;overflow:hidden;
-  box-shadow:6px 6px 0 rgba(0,0,0,.3);transition:transform .15s,box-shadow .15s}
-.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 rgba(0,0,0,.3)}
+h1{font-size:clamp(5rem,22vw,11rem);line-height:.82;color:var(--sun);text-shadow:.04em .04em 0 var(--red)}
+.lead{margin:22px 0 0;max-width:36ch;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:26px;margin-top:clamp(36px,6vw,68px)}
+.tile{display:flex;flex-direction:column;color:var(--ink);text-decoration:none;border-radius:22px;overflow:hidden;position:relative;
+  box-shadow:6px 6px 0 rgba(0,0,0,.35);transition:transform .18s,box-shadow .18s}
+.tile:hover{transform:translate(-3px,-4px);box-shadow:10px 10px 0 rgba(0,0,0,.35)}
 .tile:focus-visible{outline:4px solid var(--sun);outline-offset:4px}
-.flags{background:#0b0d1f;color:#f3f4fc}.uni{background:var(--blue);color:#fff}.tape{background:var(--paper)}
-.uni .preview{background:var(--bg);border-color:var(--bg);background-image:radial-gradient(rgba(255,255,255,.1) 1.5px,transparent 1.6px);background-size:14px 14px}
-.uni .go{color:var(--sun)}
-.flags .go{color:#3dd6f5}
+.preview{height:176px;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-bottom:2px solid rgba(0,0,0,.45)}
+.body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+h2{font-size:2.8rem;line-height:1}
+.body p{margin:0 0 16px;font-size:1.05rem}
+.go{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--on);background:var(--acc);
+  border-radius:999px;padding:9px 18px;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.go::after{content:"→";transition:transform .15s}
+.tile:hover .go::after{transform:translateX(5px)}
+.flags{background:#0b0d1f;color:#f3f4fc;--acc:#3dd6f5;--on:#0b0d1f}
+.uni{background:var(--blue);color:#fff;--acc:#ffd21f;--on:#06214f}
+.tape{background:var(--paper);--acc:#e0262d;--on:#fff}
+.mine{background:#1c1522;color:#f6ead7;--acc:#ffcf3f;--on:#1c1522}
 .flags .preview{gap:0;border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 15% 0,rgba(139,123,255,.6),transparent 60%),radial-gradient(circle at 95% 100%,rgba(61,214,245,.45),transparent 55%),#0b0d1f}
-.preview{height:148px;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;
-  border-bottom:2px solid var(--ink)}
-.body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
-h2{font-size:2.3rem;line-height:1}
-.body p{margin:0;font-size:1rem}
-.go{margin-top:auto;padding-top:14px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.uni .preview{background:radial-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.6px) 0 0/14px 14px,var(--bg);border-color:var(--bg)}
+.mine .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 80% 55% at 50% 110%,rgba(255,122,26,.6),transparent),#1c1522}
+.tape .preview{border-color:var(--ink);background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(22,32,74,.1) 23px 24px),#ebe8dd}
 /* Flags */
-.fl{width:68px;height:50px;border-radius:9px;border:2px solid #0b0d1f;margin:0 -6px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.fl{width:76px;height:56px;border-radius:10px;border:2px solid #0b0d1f;margin:0 -6px;box-shadow:0 8px 20px rgba(0,0,0,.4);transition:transform .3s}
 .f1{background:linear-gradient(#111 33.3%,#d00 33.3% 66.6%,#ffce00 66.6%);transform:translateY(8px) rotate(-6deg)}
 .f2{background:linear-gradient(90deg,#0055a4 33.3%,#fff 33.3% 66.6%,#ef4135 66.6%);transform:rotate(5deg)}
 .f3{background:linear-gradient(90deg,transparent 26%,#ffc72c 26% 40%,transparent 40%),linear-gradient(transparent 38%,#ffc72c 38% 62%,transparent 62%),#006aa7;transform:translateY(8px) rotate(-6deg)}
 .f4{background:radial-gradient(circle,#bc002d 0 28%,transparent 29%),#fff;transform:rotate(5deg)}
+.flags:hover .f1{transform:translate(-12px,8px) rotate(-14deg)}
+.flags:hover .f2{transform:translateY(-8px) rotate(7deg)}
+.flags:hover .f3{transform:translate(4px,12px) rotate(-10deg)}
+.flags:hover .f4{transform:translate(14px,-2px) rotate(12deg)}
 /* UniQuiz */
-.planet{position:relative;width:150px;height:96px}
+.planet{position:relative;width:170px;height:104px;transition:transform .5s}
+.uni:hover .planet{transform:rotate(-8deg) scale(1.1)}
 .planet i{position:absolute;border-radius:50%}
-.planet .p{left:50px;top:20px;width:52px;height:52px;background:var(--sun)}
-.planet .ring{left:14px;top:34px;width:124px;height:30px;border:5px solid var(--red);transform:rotate(-20deg)}
+.planet .p{left:58px;top:22px;width:58px;height:58px;background:var(--sun);box-shadow:inset -8px -8px 0 rgba(224,120,0,.35)}
+.planet .ring{left:16px;top:38px;width:140px;height:34px;border:5px solid var(--red);transform:rotate(-20deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
 .planet .s1{left:10px;top:8px;width:7px;height:7px;background:#fff}
 .planet .s2{right:6px;bottom:6px;width:5px;height:5px;background:#fff}
 .planet .s3{right:24px;top:4px;width:4px;height:4px;background:#fff}
 /* Emberdeep */
-.mine{background:#1c1522;color:#f6ead7}
-.mine .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 80% 55% at 50% 110%,rgba(255,122,26,.55),transparent),#1c1522}
-.mine .go{color:#ffcf3f}
-.rock{width:96px;height:88px;clip-path:polygon(14% 30%,30% 8%,62% 4%,88% 22%,96% 55%,80% 90%,45% 98%,12% 80%,4% 50%);
+.rock{width:108px;height:100px;transition:transform .2s;clip-path:polygon(14% 30%,30% 8%,62% 4%,88% 22%,96% 55%,80% 90%,45% 98%,12% 80%,4% 50%);
   background:linear-gradient(118deg,transparent 36%,#ffcf3f 37% 44%,transparent 45% 57%,#ffb300 58% 62%,transparent 63%),radial-gradient(circle at 35% 28%,#b3abc2,#716983 55%,#463e51)}
+.mine:hover .rock{transform:rotate(-5deg) scale(1.08)}
 /* Red Tape */
-.form{width:100%;max-width:230px;font-size:.85rem;font-weight:600;position:relative}
+.form{width:100%;max-width:250px;font-size:.9rem;font-weight:600;position:relative;color:var(--ink)}
 .form .box{border:2px solid var(--ink);background:#fffefa;padding:6px 10px;margin-bottom:8px}
 .form .r{display:flex;gap:8px;align-items:center;margin-top:3px}
 .form .bad{color:var(--red)}.form .good{color:var(--ok)}
-.stamp{position:absolute;right:-6px;top:-12px;color:var(--red);border:3px double var(--red);padding:0 8px;
-  font-weight:800;transform:rotate(-9deg);background:var(--paper)}
+.stamp{position:absolute;right:-8px;top:-14px;color:var(--red);border:3px double var(--red);padding:0 8px;font-weight:800;transform:rotate(-9deg);background:#ebe8dd;transition:transform .15s}
+.tape:hover .stamp{transform:rotate(-9deg) scale(1.2)}
 footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
-footer a{color:var(--paper)}
-@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp{transition:none}.tile:hover{transform:none}}
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true">
-  <div class="b1"><i class="p"></i><i class="ring"></i></div>
-  <div class="b2"></div>
-  <div class="b3">Abgelehnt</div>
-</div>
-<button class="anim" id="anim" type="button" aria-pressed="false">Animation stoppen</button>
+<canvas id="cv" aria-hidden="true"></canvas>
+<div class="veil"></div>
+<button class="anim" id="anim" type="button" aria-pressed="false">⏸ Animation stoppen</button>
 <div class="wrap">
   <header>
     <h1>Spiele</h1>
@@ -97,7 +91,7 @@ footer a{color:var(--paper)}
   </header>
 
   <main class="grid">
-    <a class="tile flags" href="https://iamera.github.io/Flags/">
+    <a class="tile flags" data-k="flag" href="https://iamera.github.io/Flags/">
       <div class="preview" aria-hidden="true"><span class="fl f1"></span><span class="fl f2"></span><span class="fl f3"></span><span class="fl f4"></span></div>
       <div class="body">
         <h2>Flags</h2>
@@ -106,7 +100,7 @@ footer a{color:var(--paper)}
       </div>
     </a>
 
-    <a class="tile uni" href="https://iamera.github.io/UniQuiz/">
+    <a class="tile uni" data-k="comet" href="https://iamera.github.io/UniQuiz/">
       <div class="preview" aria-hidden="true">
         <div class="planet"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="p"></i><i class="ring"></i></div>
       </div>
@@ -117,7 +111,7 @@ footer a{color:var(--paper)}
       </div>
     </a>
 
-    <a class="tile tape" href="https://iamera.github.io/RedTape/">
+    <a class="tile tape" data-k="paper" href="https://iamera.github.io/RedTape/">
       <div class="preview" aria-hidden="true">
         <div class="form">
           <div class="box">Passwort</div>
@@ -133,7 +127,7 @@ footer a{color:var(--paper)}
       </div>
     </a>
 
-    <a class="tile mine" href="https://iamera.github.io/Emberdeep/">
+    <a class="tile mine" data-k="ember" href="https://iamera.github.io/Emberdeep/">
       <div class="preview" aria-hidden="true"><div class="rock"></div></div>
       <div class="body">
         <h2>Emberdeep</h2>
@@ -143,17 +137,119 @@ footer a{color:var(--paper)}
     </a>
   </main>
 
-  <footer>iamera.github.io</footer>
+  <footer>4 Spiele · iamera.github.io</footer>
 </div>
 <script>
 (function(){
-  var KEY="hub-animation",btn=document.getElementById("anim"),root=document.documentElement,saved=null;
+  var cv=document.getElementById("cv"),cx=cv.getContext("2d"),btn=document.getElementById("anim"),root=document.documentElement;
+  var W=0,H=0,mx=.5,my=.5,pmx=.5,pmy=.5,clock=0,last=0,raf=0,run=false,target=null;
+  var P=[],stars=[],acc={flag:0,paper:0,ember:0,comet:0},hov={flag:0,paper:0,ember:0,comet:0};
+  var BASE={flag:.35,paper:.3,ember:3,comet:.1},HOT={flag:6,paper:6,ember:40,comet:2.5};
+  var FL=[["h","#111","#d00","#ffce00"],["v","#0055a4","#fff","#ef4135"],["v","#009246","#fff","#ce2b37"],["h","#ae1c28","#fff","#21468b"],["h","#ff9933","#fff","#138808"],["x"],["o"]];
+  var rnd=function(a,b){return a+Math.random()*(b-a)};
+
+  function size(){
+    var d=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+    cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+    if(!stars.length)for(var i=0;i<140;i++)stars.push({x:Math.random(),y:Math.random(),z:rnd(.2,1),s:rnd(.7,1.9),t:rnd(0,6.28)});
+  }
+  function spawn(k,rand){
+    var z=rnd(.55,1.1),p={k:k,x:rnd(0,W),y:rand?rnd(0,H):-50,t:0,sd:rnd(0,6.28),rot:rnd(-.6,.6),vr:rnd(-.7,.7),z:z};
+    if(k=="flag"){p.vy=rnd(35,80)*z;p.w=rnd(32,48)*z;p.f=FL[(Math.random()*FL.length)|0]}
+    else if(k=="paper"){p.vy=rnd(30,65)*z;p.w=rnd(32,46)*z;p.st=Math.random()<.4}
+    else if(k=="ember"){p.y=rand?rnd(H*.3,H):H+10;p.vy=-rnd(40,130);p.vx=rnd(-15,15);p.r=rnd(1.2,3.6);p.life=rnd(3,7)}
+    else{if(rand)return;p.x=rnd(-100,W*.7);p.y=rnd(-30,H*.35);p.vx=rnd(520,780);p.vy=p.vx*rnd(.28,.45);p.life=rnd(.9,1.4)}
+    P.push(p);
+  }
+  function flag(f,w,h){
+    var i;
+    if(f[0]=="h")for(i=0;i<3;i++){cx.fillStyle=f[i+1];cx.fillRect(-w/2,-h/2+i*h/3,w,h/3+.5)}
+    else if(f[0]=="v")for(i=0;i<3;i++){cx.fillStyle=f[i+1];cx.fillRect(-w/2+i*w/3,-h/2,w/3+.5,h)}
+    else if(f[0]=="x"){cx.fillStyle="#006aa7";cx.fillRect(-w/2,-h/2,w,h);cx.fillStyle="#ffc72c";cx.fillRect(-w/2+w*.26,-h/2,w*.16,h);cx.fillRect(-w/2,-h/2+h*.4,w,h*.2)}
+    else{cx.fillStyle="#fff";cx.fillRect(-w/2,-h/2,w,h);cx.fillStyle="#bc002d";cx.beginPath();cx.arc(0,0,h*.3,0,6.3);cx.fill()}
+    cx.strokeStyle="rgba(0,0,0,.28)";cx.lineWidth=1;cx.strokeRect(-w/2,-h/2,w,h);
+  }
+  function draw(t){
+    cx.clearRect(0,0,W,H);
+    var i,p,s,x,y;
+    cx.fillStyle="#fff";
+    for(i=0;i<stars.length;i++){
+      s=stars[i];x=((s.x*W+(pmx-.5)*-36*s.z)%W+W)%W;y=s.y*H+(pmy-.5)*-24*s.z;
+      cx.globalAlpha=.2+.65*s.z*(.5+.5*Math.sin(t*(1.2+hov.comet*3)+s.t));
+      cx.fillRect(x,y,s.s,s.s);
+    }
+    var px=((t*7)%(W+420))-210+(pmx-.5)*-60,py=H*.2+Math.sin(t*.1)*30+(pmy-.5)*-30;
+    cx.globalAlpha=.3+.5*hov.comet;cx.lineWidth=7;cx.strokeStyle="#e0262d";
+    cx.beginPath();cx.ellipse(px,py,72,18,-.35,Math.PI,6.2832);cx.stroke();
+    cx.fillStyle="#ffd21f";cx.beginPath();cx.arc(px,py,30,0,6.3);cx.fill();
+    cx.beginPath();cx.ellipse(px,py,72,18,-.35,0,Math.PI);cx.stroke();
+    for(i=0;i<P.length;i++){
+      p=P[i];x=p.x+(pmx-.5)*-50*p.z;y=p.y+(pmy-.5)*-30*p.z;
+      if(p.k=="flag"){
+        cx.save();cx.globalAlpha=.35+.5*p.z/1.1;cx.translate(x,y);cx.rotate(p.rot);cx.scale(1,.82+.18*Math.sin(p.t*2.6+p.sd));flag(p.f,p.w,p.w*.7);cx.restore();
+      }else if(p.k=="paper"){
+        var h=p.w*1.35;cx.save();cx.globalAlpha=.3+.55*p.z/1.1;cx.translate(x,y);cx.rotate(p.rot);cx.scale(.45+.55*Math.abs(Math.cos(p.t*.9+p.sd)),1);
+        cx.fillStyle="#f4f2ea";cx.fillRect(-p.w/2,-h/2,p.w,h);cx.strokeStyle="rgba(22,32,74,.35)";cx.lineWidth=1;
+        for(var l=0;l<4;l++){cx.beginPath();cx.moveTo(-p.w*.38,-h*.34+l*h*.1);cx.lineTo(p.w*.38,-h*.34+l*h*.1);cx.stroke()}
+        if(p.st){cx.fillStyle="#e0262d";cx.font="bold "+(p.w*.55)+"px sans-serif";cx.textAlign="center";cx.fillText("✗",0,h*.3)}
+        cx.restore();
+      }else if(p.k=="comet"){
+        var a=Math.min(1,p.t*6)*(1-p.t/p.life),n=Math.hypot(p.vx,p.vy),ux=p.vx/n,uy=p.vy/n,g=cx.createLinearGradient(p.x,p.y,p.x-ux*130,p.y-uy*130);
+        g.addColorStop(0,"rgba(255,255,255,"+a+")");g.addColorStop(1,"rgba(255,255,255,0)");
+        cx.globalAlpha=1;cx.strokeStyle=g;cx.lineWidth=2.2;cx.lineCap="round";cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(p.x-ux*130,p.y-uy*130);cx.stroke();
+      }
+    }
+    cx.globalCompositeOperation="lighter";
+    for(i=0;i<P.length;i++){
+      p=P[i];if(p.k!="ember")continue;
+      var al=Math.min(1,p.t*2)*(1-p.t/p.life);cx.globalAlpha=1;
+      cx.fillStyle="rgba(255,110,20,"+al*.22+")";cx.beginPath();cx.arc(p.x,p.y,p.r*3.4,0,6.3);cx.fill();
+      cx.fillStyle="rgba(255,205,100,"+al+")";cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.3);cx.fill();
+    }
+    cx.globalCompositeOperation="source-over";cx.globalAlpha=1;
+  }
+  function step(dt){
+    clock+=dt;pmx+=(mx-pmx)*Math.min(1,dt*3);pmy+=(my-pmy)*Math.min(1,dt*3);
+    for(var k in hov){
+      hov[k]+=((target===k?1:0)-hov[k])*Math.min(1,dt*4);
+      acc[k]+=(BASE[k]+(HOT[k]-BASE[k])*hov[k])*dt;
+      while(acc[k]>=1){acc[k]--;if(P.length<260)spawn(k,false)}
+    }
+    for(var i=P.length-1;i>=0;i--){
+      var p=P[i];p.t+=dt;
+      if(p.k=="flag"||p.k=="paper"){p.y+=p.vy*dt;p.x+=Math.sin(p.t*1.2+p.sd)*24*dt;p.rot+=p.vr*dt;if(p.y>H+70)P.splice(i,1)}
+      else if(p.k=="ember"){p.y+=p.vy*dt;p.x+=(p.vx+Math.sin(p.t*3+p.sd)*22)*dt;if(p.t>p.life)P.splice(i,1)}
+      else{p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.t>p.life)P.splice(i,1)}
+    }
+    draw(clock);
+  }
+  function frame(now){
+    if(!run)return;
+    var dt=Math.min((now-last)/1000,.05);last=now;step(dt);raf=requestAnimationFrame(frame);
+  }
+  function play(){if(run)return;run=true;last=performance.now();raf=requestAnimationFrame(frame)}
+  function stop(){run=false;cancelAnimationFrame(raf)}
+
+  size();
+  for(var n=0;n<8;n++){spawn("flag",true);}
+  for(n=0;n<7;n++){spawn("paper",true);}
+  for(n=0;n<40;n++){spawn("ember",true);}
+  draw(0);
+  addEventListener("resize",function(){size();draw(clock)});
+  addEventListener("pointermove",function(e){mx=e.clientX/W;my=e.clientY/H});
+  Array.prototype.forEach.call(document.querySelectorAll(".tile"),function(t){
+    var k=t.getAttribute("data-k"),on=function(){target=k},off=function(){if(target===k)target=null};
+    t.addEventListener("pointerenter",on);t.addEventListener("pointerleave",off);t.addEventListener("focus",on);t.addEventListener("blur",off);
+  });
+
+  var KEY="hub-animation",saved=null;
   try{saved=localStorage.getItem(KEY)}catch(e){}
   var still=saved?saved==="aus":matchMedia("(prefers-reduced-motion:reduce)").matches;
   function apply(){
     root.classList.toggle("still",still);
-    btn.textContent=still?"Animation starten":"Animation stoppen";
+    btn.textContent=still?"▶ Animation starten":"⏸ Animation stoppen";
     btn.setAttribute("aria-pressed",String(still));
+    if(still)stop();else play();
   }
   btn.addEventListener("click",function(){
     still=!still;apply();
