@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spiele – iamera</title>
-<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken: fünf kleine Browser-Spiele.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b3fa8'/><path d='M22 12L50 30L22 48Z' transform='translate(4 5)' fill='%23e0262d'/><path d='M22 12L50 30L22 48Z' fill='%23ffd21f'/></svg>">
+<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken, Planeten umkreisen: sechs kleine Browser-Spiele.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@500;700&family=VT323&display=swap" rel="stylesheet">
@@ -44,6 +45,7 @@ h2{font-size:2.8rem;line-height:1}
 .tape{background:var(--paper);--acc:#e0262d;--on:#fff}
 .mine{background:#1c1522;color:#f6ead7;--acc:#ffcf3f;--on:#1c1522}
 .ghost{background:#06100a;color:#bfffd4;--acc:#3dff8f;--on:#06100a}
+.orbit{background:#0a0720;color:#f2eefc;--acc:#8ffbe0;--on:#0a0720}
 .flags .preview{gap:0;border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 15% 0,rgba(139,123,255,.6),transparent 60%),radial-gradient(circle at 95% 100%,rgba(61,214,245,.45),transparent 55%),#0b0d1f}
 .uni .preview{background:radial-gradient(rgba(255,255,255,.14) 1.5px,transparent 1.6px) 0 0/14px 14px,radial-gradient(ellipse 70% 80% at 50% 100%,rgba(255,92,170,.45),transparent),#2a0f6b;border-color:#1b0a4a}
 .mine .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 80% 55% at 50% 110%,rgba(255,122,26,.6),transparent),#1c1522}
@@ -72,6 +74,22 @@ h2{font-size:2.8rem;line-height:1}
 .rock{width:108px;height:100px;transition:transform .2s;clip-path:polygon(14% 30%,30% 8%,62% 4%,88% 22%,96% 55%,80% 90%,45% 98%,12% 80%,4% 50%);
   background:linear-gradient(118deg,transparent 36%,#ffcf3f 37% 44%,transparent 45% 57%,#ffb300 58% 62%,transparent 63%),radial-gradient(circle at 35% 28%,#b3abc2,#716983 55%,#463e51)}
 .mine:hover .rock{transform:rotate(-5deg) scale(1.08)}
+/* Orbit */
+.orbit .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 85% 0,rgba(139,108,255,.55),transparent 55%),radial-gradient(circle at 10% 100%,rgba(143,251,224,.22),transparent 55%),#0a0720}
+.orb{position:relative;width:140px;height:140px}
+.orb i{position:absolute;display:block}
+.rg{left:50%;top:50%;border-radius:50%;border:2px solid rgba(217,204,255,.65);transform:translate(-50%,-50%)}
+.rg1{width:84px;height:84px}.rg2{width:130px;height:130px}
+.pl{left:50%;top:50%;width:28px;height:28px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,#c9b8ff,#5b3fd0 70%);box-shadow:0 0 18px rgba(139,108,255,.9)}
+.arm{transform:rotate(var(--s))}
+.a1{inset:28px;--s:-40deg}.a2{inset:5px;--s:130deg}.a3{inset:5px;--s:250deg}
+.dt,.sr,.as{left:50%;top:0}
+.dt{width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#ffd21f;box-shadow:0 0 12px #ffd21f}
+.sr{width:16px;height:16px;margin:-8px 0 0 -8px;background:#8ffbe0;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.as{width:14px;height:14px;margin:-7px 0 0 -7px;background:#ff7a4d;clip-path:polygon(20% 5%,70% 0,100% 40%,85% 90%,35% 100%,0 55%)}
+.orbit:hover .arm{animation:orb 4s linear infinite}
+.orbit:hover .a1{animation-duration:2.4s}
+@keyframes orb{to{transform:rotate(calc(var(--s) + 360deg))}}
 /* Red Tape */
 .form{width:100%;max-width:250px;font-size:.9rem;font-weight:600;position:relative;color:var(--ink)}
 .form .box{border:2px solid var(--ink);background:#fffefa;padding:6px 10px;margin-bottom:8px}
@@ -89,7 +107,7 @@ h2{font-size:2.8rem;line-height:1}
 .rtlogo{width:116px;height:116px;border-radius:26px;box-shadow:0 0 0 3px var(--ink),6px 6px 0 var(--ink);transform:rotate(-4deg);transition:transform .2s}
 .tape:hover .rtlogo{transform:rotate(3deg) scale(1.08)}
 footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
-@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}}
+@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}.orbit:hover .arm{animation:none}}
 </style>
 </head>
 <body>
@@ -99,7 +117,6 @@ footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
 <div class="wrap">
   <header>
     <h1>Spiele</h1>
-    <p class="lead">Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken.</p>
   </header>
 
   <main class="grid">
@@ -157,9 +174,19 @@ footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
         <span class="go">Spielen</span>
       </div>
     </a>
+    <a class="tile orbit" href="https://iamera.github.io/Orbit/">
+      <div class="preview" aria-hidden="true">
+        <div class="orb"><i class="rg rg1"></i><i class="rg rg2"></i><i class="pl"></i><i class="arm a1"><i class="dt"></i></i><i class="arm a2"><i class="sr"></i></i><i class="arm a3"><i class="as"></i></i></div>
+      </div>
+      <div class="body">
+        <h2>Orbit</h2>
+        <p>Eine Taste, zwei Bahnen: Wechsle die Spur, sammle Sterne und weiche den Asteroiden aus.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
   </main>
 
-  <footer>5 Spiele · iamera.github.io</footer>
+  <footer>6 Spiele · iamera.github.io</footer>
 </div>
 <script>
 (function(){
