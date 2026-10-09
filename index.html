@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spiele – iamera</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b3fa8'/><path d='M22 12L50 30L22 48Z' transform='translate(4 5)' fill='%23e0262d'/><path d='M22 12L50 30L22 48Z' fill='%23ffd21f'/></svg>">
-<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken, Planeten umkreisen: sechs kleine Browser-Spiele.">
+<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken, Planeten umkreisen, Würfel werfen: sieben kleine Browser-Spiele.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@500;700&family=VT323&display=swap" rel="stylesheet">
@@ -45,6 +45,7 @@ h2{font-size:2.8rem;line-height:1}
 .tape{background:var(--paper);--acc:#e0262d;--on:#fff}
 .mine{background:#1c1522;color:#f6ead7;--acc:#ffcf3f;--on:#1c1522}
 .ghost{background:#06100a;color:#bfffd4;--acc:#3dff8f;--on:#06100a}
+.dd{background:#1f1a28;color:#f1e8d3;--acc:#f0a04b;--on:#2a1a08}
 .orbit{background:#0a0720;color:#f2eefc;--acc:#8ffbe0;--on:#0a0720}
 .flags .preview{gap:0;border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 15% 0,rgba(139,123,255,.6),transparent 60%),radial-gradient(circle at 95% 100%,rgba(61,214,245,.45),transparent 55%),#0b0d1f}
 .uni .preview{background:radial-gradient(rgba(255,255,255,.14) 1.5px,transparent 1.6px) 0 0/14px 14px,radial-gradient(ellipse 70% 80% at 50% 100%,rgba(255,92,170,.45),transparent),#2a0f6b;border-color:#1b0a4a}
@@ -74,6 +75,12 @@ h2{font-size:2.8rem;line-height:1}
 .rock{width:108px;height:100px;transition:transform .2s;clip-path:polygon(14% 30%,30% 8%,62% 4%,88% 22%,96% 55%,80% 90%,45% 98%,12% 80%,4% 50%);
   background:linear-gradient(118deg,transparent 36%,#ffcf3f 37% 44%,transparent 45% 57%,#ffb300 58% 62%,transparent 63%),radial-gradient(circle at 35% 28%,#b3abc2,#716983 55%,#463e51)}
 .mine:hover .rock{transform:rotate(-5deg) scale(1.08)}
+/* Dungeon Dice */
+.dd .preview{gap:16px;border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 45% 80% at 12% 110%,rgba(240,160,75,.5),transparent),radial-gradient(ellipse 45% 80% at 88% 110%,rgba(240,160,75,.4),transparent),repeating-linear-gradient(0deg,transparent 0 37px,rgba(255,255,255,.05) 37px 39px),#1f1a28}
+.dc{width:72px;height:72px;border-radius:16px;padding:9px;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);background:radial-gradient(circle at 30% 25%,#fffaf0,#f1e8d3 55%,#d9cdb2);box-shadow:0 5px 0 #a89b7e,0 12px 18px rgba(0,0,0,.5);transition:transform .3s}
+.dc i{width:12px;height:12px;border-radius:50%;background:#2a2230;place-self:center}
+.dc1{transform:rotate(-12deg) translateY(6px)}.dc2{transform:rotate(7deg) translateY(-8px)}.dc3{transform:rotate(15deg) translateY(6px)}
+.dd:hover .dc1{transform:rotate(-24deg) translate(-12px,2px)}.dd:hover .dc2{transform:rotate(-8deg) translateY(-18px)}.dd:hover .dc3{transform:rotate(28deg) translate(12px,2px)}
 /* Orbit */
 .orbit .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(circle at 85% 0,rgba(139,108,255,.55),transparent 55%),radial-gradient(circle at 10% 100%,rgba(143,251,224,.22),transparent 55%),#0a0720}
 .orb{position:relative;width:140px;height:140px}
@@ -107,7 +114,7 @@ h2{font-size:2.8rem;line-height:1}
 .rtlogo{width:116px;height:116px;border-radius:26px;box-shadow:0 0 0 3px var(--ink),6px 6px 0 var(--ink);transform:rotate(-4deg);transition:transform .2s}
 .tape:hover .rtlogo{transform:rotate(3deg) scale(1.08)}
 footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
-@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}.orbit:hover .arm{animation:none}}
+@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo,.dc{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}.orbit:hover .arm{animation:none}}
 </style>
 </head>
 <body>
@@ -184,9 +191,21 @@ footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
         <span class="go">Spielen</span>
       </div>
     </a>
+    <a class="tile dd" href="https://iamera.github.io/DungeonDice/">
+      <div class="preview" aria-hidden="true">
+        <span class="dc dc1"><i style="grid-area:1/1"></i><i style="grid-area:2/2"></i><i style="grid-area:3/3"></i></span>
+        <span class="dc dc2"><i style="grid-area:1/1"></i><i style="grid-area:1/3"></i><i style="grid-area:2/2"></i><i style="grid-area:3/1"></i><i style="grid-area:3/3"></i></span>
+        <span class="dc dc3"><i style="grid-area:1/1"></i><i style="grid-area:2/1"></i><i style="grid-area:3/1"></i><i style="grid-area:1/3"></i><i style="grid-area:2/3"></i><i style="grid-area:3/3"></i></span>
+      </div>
+      <div class="body">
+        <h2>Dungeon Dice</h2>
+        <p>Ein Würfel-Roguelike: Verteile deine Würfel auf Angriff, Schild und Heilung und kämpfe dich durch zehn Räume bis zum Drachen.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
   </main>
 
-  <footer>6 Spiele · iamera.github.io</footer>
+  <footer>7 Spiele · iamera.github.io</footer>
 </div>
 <script>
 (function(){
