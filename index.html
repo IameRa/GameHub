@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spiele – iamera</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b3fa8'/><path d='M22 12L50 30L22 48Z' transform='translate(4 5)' fill='%23e0262d'/><path d='M22 12L50 30L22 48Z' fill='%23ffd21f'/></svg>">
-<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken, Planeten umkreisen, Würfel werfen: sieben kleine Browser-Spiele.">
+<meta name="description" content="Flaggen raten, Universen erobern, Formulare überleben, Gold schürfen, Systeme hacken, Planeten umkreisen, Würfel werfen, Türme bauen: acht kleine Browser-Spiele.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@500;700&family=VT323&display=swap" rel="stylesheet">
@@ -52,6 +52,16 @@ h2{font-size:2.8rem;line-height:1}
 .mine .preview{border-color:rgba(255,255,255,.14);background:radial-gradient(ellipse 80% 55% at 50% 110%,rgba(255,122,26,.6),transparent),#1c1522}
 .tape .preview{border-color:var(--ink);background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(22,32,74,.1) 23px 24px),#ebe8dd}
 .ghost .preview{border-color:rgba(61,255,143,.25);background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px),radial-gradient(ellipse 80% 60% at 50% 0,rgba(61,255,143,.22),transparent),#050d08}
+.td{background:#111a38;color:#e6edff;--acc:#4fe3c8;--on:#04221f}
+.td .preview{position:relative;overflow:hidden;border-color:#36437f;background:radial-gradient(ellipse 90% 80% at 50% 120%,rgba(0,0,0,.4),transparent),repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,transparent 2px 22px),#3b7a3a}
+.td .road{position:absolute;left:-10px;right:-10px;top:71px;height:40px;background:#c3a674;border:4px solid #3f2e1a;border-left:0;border-right:0}
+.td .tw{position:absolute;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d6d0c2,#6f6a5e);border:2px solid #25211b;box-shadow:0 5px 0 rgba(0,0,0,.3);transition:transform .25s}
+.td .tw::after{content:"";position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8,var(--c) 60%);border:1.5px solid #0006}
+.td:hover .tw{transform:translateY(-6px)}
+.td .mob{position:absolute;top:79px;left:-24px;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b6e65a,#4a7d1c);border:2px solid #1a1208}
+.td .mob::before{content:"";position:absolute;left:5px;top:7px;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:8px 0 #fff}
+.td:hover .mob{animation:tdwalk 2.6s linear infinite}
+@keyframes tdwalk{to{left:105%}}
 /* Flags */
 .fl{width:76px;height:56px;border-radius:10px;border:2px solid #0b0d1f;margin:0 -6px;box-shadow:0 8px 20px rgba(0,0,0,.4);transition:transform .3s}
 .f1{background:linear-gradient(#111 33.3%,#d00 33.3% 66.6%,#ffce00 66.6%);transform:translateY(8px) rotate(-6deg)}
@@ -114,7 +124,7 @@ h2{font-size:2.8rem;line-height:1}
 .rtlogo{width:116px;height:116px;border-radius:26px;box-shadow:0 0 0 3px var(--ink),6px 6px 0 var(--ink);transform:rotate(-4deg);transition:transform .2s}
 .tape:hover .rtlogo{transform:rotate(3deg) scale(1.08)}
 footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
-@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo,.dc{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}.orbit:hover .arm{animation:none}}
+@media (prefers-reduced-motion:reduce){.tile,.fl,.planet,.rock,.stamp,.rtlogo,.dc{transition:none}.tile:hover{transform:none}.ghost:hover .cur{animation:none}.orbit:hover .arm{animation:none}.td:hover .mob{animation:none}.td .tw{transition:none}}
 </style>
 </head>
 <body>
@@ -203,9 +213,19 @@ footer{margin-top:clamp(36px,6vw,64px);color:var(--mute);font-size:.9rem}
         <span class="go">Spielen</span>
       </div>
     </a>
+    <a class="tile td" href="https://iamera.github.io/Bastion/">
+      <div class="preview" aria-hidden="true"><span class="road"></span><i class="mob"></i>
+        <i class="tw" style="--c:#e8b04a;left:18%;top:20px"></i><i class="tw" style="--c:#e0703f;left:46%;top:122px"></i><i class="tw" style="--c:#7fdcff;left:72%;top:20px"></i>
+      </div>
+      <div class="body">
+        <h2>Bastion</h2>
+        <p>Ein Tower Defense: Neun Türme mit je zwei Upgrade-Pfaden, zwölf Gegnertypen, acht Karten in fünf Biomen und ein Endlos-Modus. Rüste auf und halte 20 Wellen stand.</p>
+        <span class="go">Spielen</span>
+      </div>
+    </a>
   </main>
 
-  <footer>7 Spiele · iamera.github.io</footer>
+  <footer>8 Spiele · iamera.github.io</footer>
 </div>
 <script>
 (function(){
